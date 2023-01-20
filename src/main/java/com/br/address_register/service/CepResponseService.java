@@ -1,8 +1,10 @@
 package com.br.address_register.service;
 
 import com.br.address_register.response.CepResponse;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+@Service
 public class CepResponseService {
 
     public CepResponse getCepResponse(String cep) {
