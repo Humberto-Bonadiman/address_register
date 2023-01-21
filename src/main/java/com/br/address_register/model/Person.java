@@ -1,11 +1,14 @@
 package com.br.address_register.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Person {
@@ -21,7 +24,7 @@ public class Person {
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
-    @Column(name = "nationality", nullable = false)
+    @Column(name = "birthplace", nullable = false)
     private String birthplace;
 
     @Column(name = "birth_state", nullable = false)
@@ -30,13 +33,16 @@ public class Person {
     @Column(name = "nationality", nullable = false)
     private String nationality;
 
+    @JsonManagedReference
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "relationship_person_address",
             joinColumns = {@JoinColumn(name = "person_id")},
             inverseJoinColumns = {@JoinColumn(name = "address_id")})
-    private List<Address> addresses;
+    private Set<Address> addresses;
 
-    public Person() {}
+    public Person() {
+        this.addresses = new HashSet<>();
+    }
 
     public Person(
             String name,
@@ -50,6 +56,7 @@ public class Person {
         this.birthplace = birthplace;
         this.birthState = birthState;
         this.nationality = nationality;
+        this.addresses = new HashSet<>();
     }
 
     public Person(
@@ -66,6 +73,7 @@ public class Person {
         this.birthplace = birthplace;
         this.birthState = birthState;
         this.nationality = nationality;
+        this.addresses = new HashSet<>();
     }
 
     public Long getId() {
@@ -116,13 +124,13 @@ public class Person {
         this.nationality = nationality;
     }
 
-    public List<Address> getAddresses() {
+    public Set<Address> getAddresses() {
         return addresses;
     }
 
     public void addAddress(Address address) {
-        address.addPerson(this);
         this.addresses.add(address);
+        address.addPerson(this);
     }
 
     public void removeAddress(Address address) {

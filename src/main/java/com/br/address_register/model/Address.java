@@ -1,7 +1,11 @@
 package com.br.address_register.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Address {
@@ -32,8 +36,9 @@ public class Address {
     @Column(name = "complement")
     private String complement;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "addresses")
-    private List<Person> people;
+    private Set<Person> people = new HashSet<>();
 
     public Address() {}
 
@@ -119,7 +124,7 @@ public class Address {
         this.complement = complement;
     }
 
-    public List<Person> getPeople() {
+    public Set<Person> getPeople() {
         return people;
     }
 

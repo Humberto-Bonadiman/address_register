@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class AddressService implements AddressInterface {
@@ -42,8 +43,8 @@ public class AddressService implements AddressInterface {
         );
         Person person = personService.findByIdOrThrowError(addressDto.getPersonId());
         person.addAddress(address);
-        Person savedPerson = personRepository.save(person);
-        return savedPerson.getAddresses().get(savedPerson.getAddresses().size() - 1);
+        personRepository.save(person);
+        return address;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class AddressService implements AddressInterface {
 
 
     @Override
-    public List<Address> listPersonAddresses(Long id) {
+    public Set<Address> listPersonAddresses(Long id) {
         Person person = personService.findByIdOrThrowError(id);
         return person.getAddresses();
     }
