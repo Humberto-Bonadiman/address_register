@@ -6,20 +6,27 @@ public class AddressDto {
 
     private String cep;
 
+    private Long number;
+
     private String complement;
 
     private Long personId;
 
     public AddressDto() {}
 
-    public AddressDto(String cep, String complement, Long personId) {
+    public AddressDto(String cep, Long number, String complement, Long personId) {
         this.cep = cep;
+        this.number = number;
         this.complement = complement;
         this.personId = personId;
     }
 
     public String getCep() {
         return cep;
+    }
+
+    public Long getNumber() {
+        return number;
     }
 
     public String getComplement() {

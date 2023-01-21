@@ -26,11 +26,34 @@ public class Address {
     @Column(name = "street", nullable = false)
     private String street;
 
-    @Column(name = "complement", nullable = false)
+    @Column(name = "number", nullable = false)
+    private Long number;
+
+    @Column(name = "complement")
     private String complement;
 
     @ManyToMany(mappedBy = "addresses")
     private List<Person> people;
+
+    public Address() {}
+
+    public Address(
+            String cep,
+            String state,
+            String city,
+            String neighborhood,
+            String street,
+            Long number,
+            String complement
+    ) {
+        this.cep = cep;
+        this.state = state;
+        this.city = city;
+        this.neighborhood = neighborhood;
+        this.street = street;
+        this.number = number;
+        this.complement = complement;
+    }
 
     public Long getId() {
         return id;
@@ -80,6 +103,14 @@ public class Address {
         this.street = street;
     }
 
+    public Long getNumber() {
+        return number;
+    }
+
+    public void setNumber(Long number) {
+        this.number = number;
+    }
+
     public String getComplement() {
         return complement;
     }
@@ -94,5 +125,9 @@ public class Address {
 
     public void addPerson(Person person) {
         this.people.add(person);
+    }
+
+    public void removePerson(Person person) {
+        this.people.remove(person);
     }
 }

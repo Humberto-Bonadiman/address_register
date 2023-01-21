@@ -120,8 +120,13 @@ public class Person {
         return addresses;
     }
 
-    public void addAddresses(Address address) {
+    public void addAddress(Address address) {
         address.addPerson(this);
         this.addresses.add(address);
+    }
+
+    public void removeAddress(Address address) {
+        address.removePerson(this);
+        this.addresses.remove(address);
     }
 }
