@@ -35,4 +35,61 @@ public class Person {
             joinColumns = {@JoinColumn(name = "person_id")},
             inverseJoinColumns = {@JoinColumn(name = "address_id")})
     private List<Address> addresses;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getBirthplace() {
+        return birthplace;
+    }
+
+    public void setBirthplace(String birthplace) {
+        this.birthplace = birthplace;
+    }
+
+    public String getBirthState() {
+        return birthState;
+    }
+
+    public void setBirthState(String birthState) {
+        this.birthState = birthState;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void addAddresses(Address address) {
+        address.addPerson(this);
+        this.addresses.add(address);
+    }
 }
