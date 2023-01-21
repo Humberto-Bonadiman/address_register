@@ -1,6 +1,7 @@
 package com.br.address_register.controller;
 
 import com.br.address_register.dto.AddressDto;
+import com.br.address_register.dto.UpdateAddressDto;
 import com.br.address_register.model.Address;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -59,7 +60,7 @@ public interface AddressInterfaceController {
     @Operation(summary = "Find an address by id")
     ResponseEntity<Address> findAddressById(@PathVariable Long id);
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     content = { @Content(mediaType = "application/json",
@@ -71,35 +72,29 @@ public interface AddressInterfaceController {
     @Operation(summary = "Update address by id")
     ResponseEntity<Address> updateAddressById(
             @PathVariable Long id,
-            @RequestBody AddressDto addressDto
+            @RequestBody UpdateAddressDto updateAddressDto
     );
 
     @PatchMapping("/add")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Address.class)) }),
-            @ApiResponse(responseCode = "400", description = "Bad Request",
+            @ApiResponse(responseCode = "204",
                     content = @Content),
             @ApiResponse(responseCode = "404", description = "Not found",
                     content = @Content)})
     @Operation(summary = "Add person in address by id")
-    ResponseEntity<Address> addPerson(
+    ResponseEntity<Object> addPerson(
             @RequestParam Long personId,
             @RequestParam Long id
     );
 
     @PatchMapping("/remove")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Address.class)) }),
-            @ApiResponse(responseCode = "400", description = "Bad Request",
+            @ApiResponse(responseCode = "204",
                     content = @Content),
             @ApiResponse(responseCode = "404", description = "Not found",
                     content = @Content)})
     @Operation(summary = "Remove person in address by id")
-    ResponseEntity<Address> removePerson(
+    ResponseEntity<Object> removePerson(
             @RequestParam Long personId,
             @RequestParam Long id
     );

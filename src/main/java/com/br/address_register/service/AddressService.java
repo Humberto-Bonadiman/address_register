@@ -1,6 +1,7 @@
 package com.br.address_register.service;
 
 import com.br.address_register.dto.AddressDto;
+import com.br.address_register.dto.UpdateAddressDto;
 import com.br.address_register.exception.messages.AddressNotFoundException;
 import com.br.address_register.model.Address;
 import com.br.address_register.model.Person;
@@ -65,33 +66,33 @@ public class AddressService implements AddressInterface {
     }
 
     @Override
-    public Address updateAddressById(Long id,  AddressDto addressDto) {
+    public Address updateAddressById(Long id,  UpdateAddressDto updateAddressDto) {
         Address address = findByIdOrThrowError(id);
-        CepResponse cepResponse = cepResponseService.getCepResponse(addressDto.getCep());
+        CepResponse cepResponse = cepResponseService.getCepResponse(updateAddressDto.getCep());
         address.setCep(cepResponse.getCep());
         address.setState(cepResponse.getState());
         address.setCity(cepResponse.getCity());
         address.setNeighborhood(cepResponse.getNeighborhood());
         address.setStreet(cepResponse.getStreet());
-        address.setNumber(addressDto.getNumber());
-        address.setComplement(addressDto.getComplement());
+        address.setNumber(updateAddressDto.getNumber());
+        address.setComplement(updateAddressDto.getComplement());
         return address;
     }
 
     @Override
-    public Address addPerson(Long personId, Long id) {
+    public void addPerson(Long personId, Long id) {
         Person person = personService.findByIdOrThrowError(personId);
         Address address = findByIdOrThrowError(id);
         person.addAddress(address);
-        return address;
+        personRepository.save(person);
     }
 
     @Override
-    public Address removePerson(Long personId, Long id) {
+    public void removePerson(Long personId, Long id) {
         Person person = personService.findByIdOrThrowError(personId);
         Address address = findByIdOrThrowError(id);
         person.removeAddress(address);
-        return address;
+        personRepository.save(person);
     }
 
     @Override

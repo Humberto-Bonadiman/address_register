@@ -1,6 +1,7 @@
 package com.br.address_register.service;
 
 import com.br.address_register.dto.AddressDto;
+import com.br.address_register.dto.UpdateAddressDto;
 import com.br.address_register.model.Address;
 
 import java.util.List;
@@ -15,11 +16,11 @@ public interface AddressInterface {
 
     Address findAddressById(Long id);
 
-    Address updateAddressById(Long id, AddressDto addressDto);
+    Address updateAddressById(Long id, UpdateAddressDto updateAddressDto);
 
-    Address addPerson(Long personId, Long id);
+    void addPerson(Long personId, Long id);
 
-    Address removePerson(Long personId, Long id);
+    void removePerson(Long personId, Long id);
 
     void deleteAddressById(Long id);
 }
