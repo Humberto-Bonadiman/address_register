@@ -14,8 +14,6 @@ public class PersonDto {
 
     private String nationality;
 
-    private Long addressId;
-
     public PersonDto() {}
 
     public PersonDto(
@@ -23,15 +21,13 @@ public class PersonDto {
             LocalDate birthDate,
             String birthplace,
             String birthState,
-            String nationality,
-            Long addressId
+            String nationality
     ) {
         this.name = name;
         this.birthDate = birthDate;
         this.birthplace = birthplace;
         this.birthState = birthState;
         this.nationality = nationality;
-        this.addressId = addressId;
     }
 
     public String getName() {
@@ -52,9 +48,5 @@ public class PersonDto {
 
     public String getNationality() {
         return nationality;
-    }
-
-    public Long getAddressId() {
-        return addressId;
     }
 }
