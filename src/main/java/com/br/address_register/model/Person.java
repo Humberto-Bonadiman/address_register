@@ -1,14 +1,10 @@
 package com.br.address_register.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Person {
@@ -38,10 +34,10 @@ public class Person {
     @JoinTable(name = "relationship_person_address",
             joinColumns = {@JoinColumn(name = "person_id")},
             inverseJoinColumns = {@JoinColumn(name = "address_id")})
-    private Set<Address> addresses;
+    private List<Address> addresses;
 
     public Person() {
-        this.addresses = new HashSet<>();
+        this.addresses = new ArrayList<>();
     }
 
     public Person(
@@ -56,7 +52,7 @@ public class Person {
         this.birthplace = birthplace;
         this.birthState = birthState;
         this.nationality = nationality;
-        this.addresses = new HashSet<>();
+        this.addresses = new ArrayList<>();
     }
 
     public Person(
@@ -73,7 +69,7 @@ public class Person {
         this.birthplace = birthplace;
         this.birthState = birthState;
         this.nationality = nationality;
-        this.addresses = new HashSet<>();
+        this.addresses = new ArrayList<>();
     }
 
     public Long getId() {
@@ -124,7 +120,7 @@ public class Person {
         this.nationality = nationality;
     }
 
-    public Set<Address> getAddresses() {
+    public List<Address> getAddresses() {
         return addresses;
     }
 

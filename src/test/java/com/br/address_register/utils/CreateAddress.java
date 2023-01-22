@@ -3,14 +3,8 @@ package com.br.address_register.utils;
 import com.br.address_register.dto.AddressDto;
 import com.br.address_register.dto.UpdateAddressDto;
 import com.br.address_register.model.Address;
-import com.br.address_register.model.Person;
-import com.br.address_register.repository.PersonRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class CreateAddress {
-
-    @Autowired
-    static PersonRepository personRepository;
 
     public static Address createTestAddress() {
         Address address = new Address(

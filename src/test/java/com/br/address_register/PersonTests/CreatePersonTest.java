@@ -1,7 +1,6 @@
 package com.br.address_register.PersonTests;
 
 import com.br.address_register.dto.PersonTestDto;
-import com.br.address_register.model.Person;
 import com.br.address_register.repository.PersonRepository;
 import com.br.address_register.utils.CreatePerson;
 import org.junit.jupiter.api.*;
@@ -11,10 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

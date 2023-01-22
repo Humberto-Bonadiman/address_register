@@ -69,7 +69,6 @@ public class EditPersonTest {
         personRepository.save(person);
         PersonTestDto errorPerson = new PersonTestDto();
         errorPerson.setName("Bad Request");
-        // errorPerson.setBirthDate("20/05/1994");
         errorPerson.setBirthplace("Bad Request");
         errorPerson.setBirthState("Bad Request");
         errorPerson.setNationality("Bad Request");
@@ -87,7 +86,6 @@ public class EditPersonTest {
         Person person = CreatePerson.createTestPerson();
         personRepository.save(person);
         PersonTestDto errorPerson = new PersonTestDto();
-        // errorPerson.setName("Bad Request");
         errorPerson.setBirthDate("20/05/1994");
         errorPerson.setBirthplace("Bad Request");
         errorPerson.setBirthState("Bad Request");
@@ -108,7 +106,6 @@ public class EditPersonTest {
         PersonTestDto errorPerson = new PersonTestDto();
         errorPerson.setName("Bad Request");
         errorPerson.setBirthDate("20/05/1994");
-        // errorPerson.setBirthplace("Bad Request");
         errorPerson.setBirthState("Bad Request");
         errorPerson.setNationality("Bad Request");
         mockMvc.perform(put("/person/" + person.getId())
@@ -128,7 +125,6 @@ public class EditPersonTest {
         errorPerson.setName("Bad Request");
         errorPerson.setBirthDate("20/05/1994");
         errorPerson.setBirthplace("Bad Request");
-        // errorPerson.setBirthState("Bad Request");
         errorPerson.setNationality("Bad Request");
         mockMvc.perform(put("/person/" + person.getId())
                         .contentType(MediaType.APPLICATION_JSON)
@@ -148,7 +144,6 @@ public class EditPersonTest {
         errorPerson.setBirthDate("20/05/1994");
         errorPerson.setBirthplace("Bad Request");
         errorPerson.setBirthState("Bad Request");
-        // errorPerson.setNationality("Bad Request");
         mockMvc.perform(put("/person/" + person.getId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(errorPerson)))

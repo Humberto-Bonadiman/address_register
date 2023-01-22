@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 public class CepResponseService {
 
     public CepResponse getCepResponse(String cep) {
+        // Documentação da Brasil Api: https://brasilapi.com.br/docs#tag/CEP
         String uri = "https://brasilapi.com.br/api/cep/v1/" + cep;
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(uri, CepResponse.class);

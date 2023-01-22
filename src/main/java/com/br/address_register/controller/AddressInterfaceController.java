@@ -12,8 +12,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 @RequestMapping("/address")
 public interface AddressInterfaceController {
@@ -51,7 +51,7 @@ public interface AddressInterfaceController {
                     content = @Content)
     })
     @Operation(summary = "Show all person addresses")
-    ResponseEntity<Set<Address>> listPersonAddresses(@RequestParam Long personId);
+    ResponseEntity<List<Address>> listPersonAddresses(@RequestParam Long personId);
 
     @GetMapping("/{id}")
     @ApiResponses(value = {

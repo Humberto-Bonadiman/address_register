@@ -3,9 +3,9 @@ package com.br.address_register.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Address {
@@ -38,7 +38,7 @@ public class Address {
 
     @JsonBackReference
     @ManyToMany(mappedBy = "addresses")
-    private Set<Person> people = new HashSet<>();
+    private List<Person> people = new ArrayList<>();
 
     public Address() {}
 
@@ -124,7 +124,7 @@ public class Address {
         this.complement = complement;
     }
 
-    public Set<Person> getPeople() {
+    public List<Person> getPeople() {
         return people;
     }
 

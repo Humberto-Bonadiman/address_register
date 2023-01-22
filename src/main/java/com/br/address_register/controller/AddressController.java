@@ -11,8 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 @CrossOrigin
 @RestController
@@ -35,7 +35,7 @@ public class AddressController implements AddressInterfaceController {
     }
 
     @Override
-    public ResponseEntity<Set<Address>> listPersonAddresses(Long personId) {
+    public ResponseEntity<List<Address>> listPersonAddresses(Long personId) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(addressService.listPersonAddresses(personId));
     }

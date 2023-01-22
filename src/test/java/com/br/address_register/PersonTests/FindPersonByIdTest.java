@@ -1,7 +1,5 @@
 package com.br.address_register.PersonTests;
 
-import java.time.format.DateTimeFormatter;
-
 import com.br.address_register.model.Person;
 import com.br.address_register.repository.PersonRepository;
 import com.br.address_register.utils.CreatePerson;
