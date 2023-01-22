@@ -137,4 +137,17 @@ public class Person {
         address.removePerson(this);
         this.addresses.remove(address);
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthDate=" + birthDate +
+                ", birthplace='" + birthplace + '\'' +
+                ", birthState='" + birthState + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", addresses=" + addresses +
+                '}';
+    }
 }

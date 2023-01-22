@@ -24,7 +24,10 @@ public interface AddressInterfaceController {
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Address.class)) }),
             @ApiResponse(responseCode = "400", description = "Bad Request",
-                    content = @Content)})
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "Person not found",
+                    content = @Content)
+    })
     @Operation(summary = "Create address")
     ResponseEntity<Address> createAddress(@RequestBody AddressDto addressDto);
 

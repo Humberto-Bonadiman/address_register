@@ -36,4 +36,20 @@ public class AddressDto {
     public Long getPersonId() {
         return personId;
     }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public void setNumber(Long number) {
+        this.number = number;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
+    }
+
+    public void setPersonId(Long personId) {
+        this.personId = personId;
+    }
 }

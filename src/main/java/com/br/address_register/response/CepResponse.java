@@ -8,6 +8,24 @@ public class CepResponse {
     private String street;
     private String service;
 
+    public CepResponse() {}
+
+    public CepResponse(
+            String cep,
+            String state,
+            String city,
+            String neighborhood,
+            String street,
+            String service
+    ) {
+        this.cep = cep;
+        this.state = state;
+        this.city = city;
+        this.neighborhood = neighborhood;
+        this.street = street;
+        this.service = service;
+    }
+
     public String getCep() {
         return cep;
     }
