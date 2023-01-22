@@ -10,11 +10,8 @@ import com.br.address_register.repository.PersonRepository;
 import com.br.address_register.response.CepResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class AddressService implements AddressInterface {
