@@ -37,9 +37,11 @@ public class Address {
 
     @JsonBackReference
     @ManyToMany(mappedBy = "addresses")
-    private List<Person> people = new ArrayList<>();
+    private List<Person> people;
 
-    public Address() {}
+    public Address() {
+        this.people = new ArrayList<>();
+    }
 
     public Address(
             String cep,
@@ -57,6 +59,7 @@ public class Address {
         this.street = street;
         this.number = number;
         this.complement = complement;
+        this.people = new ArrayList<>();
     }
 
     public Long getId() {
@@ -133,5 +136,20 @@ public class Address {
 
     public void removePerson(Person person) {
         this.people.remove(person);
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", cep='" + cep + '\'' +
+                ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
+                ", neighborhood='" + neighborhood + '\'' +
+                ", street='" + street + '\'' +
+                ", number=" + number +
+                ", complement='" + complement + '\'' +
+                ", people=" + people +
+                '}';
     }
 }
