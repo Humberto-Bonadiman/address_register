@@ -1,5 +1,6 @@
 package com.br.address_register.exception;
 
+import com.br.address_register.exception.messages.AddressNotFoundException;
 import com.br.address_register.exception.messages.PersonNotFoundException;
 import org.hibernate.PropertyValueException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -26,7 +27,8 @@ public class GlobalExceptions {
     }
     @ExceptionHandler({
             HttpClientErrorException.class,
-            PersonNotFoundException.class
+            PersonNotFoundException.class,
+            AddressNotFoundException.class
     })
     public ResponseEntity<Object> handlerNotFound(Exception exception) {
         return new ResponseEntity<>(new DataError(exception.getMessage()), HttpStatus.NOT_FOUND);
