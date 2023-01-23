@@ -75,7 +75,15 @@ spring:
     password: password
 ```
 
-Rodar o Spring-Boot com o comando:
+Entre no PostgreSQL intalado na sua máquina e crie a tabela **address_register**:
+```javascript
+sudo -u postgres psql
+```
+```javascript
+CREATE DATABASE address_register OWNER <seu_usuário_postgresql>;
+```
+
+Saía da linha de comando do postgresql com **\q** e rode o Spring-Boot com o comando:
 ```javascript
 mvn spring-boot:run
 ```
