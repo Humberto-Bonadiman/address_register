@@ -33,11 +33,6 @@ mvn package
 
 ## Comandos para utilizar o Docker
 
-Caso o PostgreSQL esteja ativo em sua máquina é necessário realizar o comando:
-```javascript
-sudo service postgresql stop
-```
-
 Para criar e iniciar os contêineres:
 </br>
 Obs.: Com o comando abaixo o docker fica rodando no terminal.
@@ -63,10 +58,6 @@ docker-compose down
 
 ## Utilizando o Spring-boot sem o Docker
 
-Primeiramente, ative o PostgreSQL:
-```javascript
-sudo service postgresql start
-```
 No arquivo que está no caminho **/src/main/resources/application.yml** você deve alterar a 6ª(username) e a 7ª(password) linha com o usuário e senha do seu PostgrSQL:
 ```javascript
 spring:
