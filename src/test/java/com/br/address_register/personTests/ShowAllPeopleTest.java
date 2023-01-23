@@ -1,4 +1,4 @@
-package com.br.address_register.PersonTests;
+package com.br.address_register.personTests;
 
 import com.br.address_register.model.Person;
 import com.br.address_register.repository.PersonRepository;

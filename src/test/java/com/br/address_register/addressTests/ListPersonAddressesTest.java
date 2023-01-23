@@ -1,4 +1,4 @@
-package com.br.address_register.AddressTests;
+package com.br.address_register.addressTests;
 
 import com.br.address_register.model.Address;
 import com.br.address_register.model.Person;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -18,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ListAllAddressesTest {
+public class ListPersonAddressesTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -44,15 +43,14 @@ public class ListAllAddressesTest {
     @Test
     @Order(1)
     @DisplayName("1 - Must show all addresses successfully")
-    public void showAllAddressSuccessfully() throws Exception {
+    public void listPersonAddressesSuccessfully() throws Exception {
         Person person = CreatePerson.createTestPerson();
         Address firstAddress = CreateAddress.createTestAddress();
         person.addAddress(firstAddress);
         Address secondAddress = CreateAddress.createSecondTestAddress();
         person.addAddress(secondAddress);
         personRepository.save(person);
-        mockMvc.perform(get("/address/find_all")
-                    .param("personId", person.getId().toString()))
+        mockMvc.perform(get("/address"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].cep").value(firstAddress.getCep()))
                 .andExpect(jsonPath("$[0].state").value(firstAddress.getState()))
@@ -68,16 +66,5 @@ public class ListAllAddressesTest {
                 .andExpect(jsonPath("$[1].street").value(secondAddress.getStreet()))
                 .andExpect(jsonPath("$[1].number").value(secondAddress.getNumber()))
                 .andExpect(jsonPath("$[1].complement").value(secondAddress.getComplement()));
-    }
-
-    @Test
-    @Order(2)
-    @DisplayName("2 - Should throw a error when the id is not found")
-    void personIdNotFoundWhenLookingPersonAddresses() throws Exception {
-        Long idNotFound = 1425620L;
-        mockMvc.perform(get("/address/find_all")
-                        .param("personId", String.valueOf(idNotFound))
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound());
     }
 }

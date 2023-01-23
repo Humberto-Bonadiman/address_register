@@ -1,6 +1,5 @@
-package com.br.address_register.AddressTests;
+package com.br.address_register.addressTests;
 
-import com.br.address_register.dto.AddressDto;
 import com.br.address_register.dto.UpdateAddressDto;
 import com.br.address_register.model.Address;
 import com.br.address_register.model.Person;

@@ -1,4 +1,4 @@
-package com.br.address_register.AddressTests;
+package com.br.address_register.addressTests;
 
 import com.br.address_register.model.Address;
 import com.br.address_register.model.Person;
@@ -12,13 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class RemovePersonFromAddressTest {
+public class AddPersonInAddressTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -45,16 +44,14 @@ public class RemovePersonFromAddressTest {
 
     @Test
     @Order(1)
-    @DisplayName("1 - Must remove a person from an address successfully")
-    public void removePersonToAddressSuccessfully() throws Exception {
+    @DisplayName("1 - Must add a person to an address successfully")
+    public void addPersonToAddressSuccessfully() throws Exception {
         Person person = CreatePerson.createTestPerson();
         Address address = CreateAddress.createTestAddress();
         person.addAddress(address);
         personRepository.save(person);
-        Person secondPerson = CreatePerson.createSecondTestPerson();
-        personRepository.save(secondPerson);
-        mockMvc.perform(patch("/address/remove")
-                        .param("personId", String.valueOf(secondPerson.getId()))
+        mockMvc.perform(patch("/address/add")
+                        .param("personId", String.valueOf(person.getId()))
                         .param("id", String.valueOf(address.getId())))
                 .andExpect(status().isNoContent());
     }
@@ -69,7 +66,7 @@ public class RemovePersonFromAddressTest {
         personRepository.save(person);
         Person secondPerson = CreatePerson.createSecondTestPerson();
         personRepository.save(secondPerson);
-        mockMvc.perform(patch("/address/remove")
+        mockMvc.perform(patch("/address/add")
                         .param("personId", String.valueOf(secondPerson.getId() + 15L))
                         .param("id", String.valueOf(address.getId())))
                 .andExpect(status().isNotFound());
@@ -85,7 +82,7 @@ public class RemovePersonFromAddressTest {
         personRepository.save(person);
         Person secondPerson = CreatePerson.createSecondTestPerson();
         personRepository.save(secondPerson);
-        mockMvc.perform(patch("/address/remove")
+        mockMvc.perform(patch("/address/add")
                         .param("personId", String.valueOf(secondPerson.getId()))
                         .param("id", String.valueOf(address.getId() + 1500L)))
                 .andExpect(status().isNotFound());
