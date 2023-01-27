@@ -42,8 +42,8 @@ public class AddressService implements AddressInterface {
         );
         Person person = personService.findByIdOrThrowError(addressDto.getPersonId());
         person.addAddress(address);
-        personRepository.save(person);
-        return address;
+        Person saved = personRepository.save(person);
+        return saved.getAddresses().get(saved.getAddresses().size() - 1);
     }
 
     @Override

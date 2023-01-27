@@ -33,7 +33,7 @@ services:
     networks:
       - address_register-net
     ports:
-      - 5435:5432
+      - 5434:5432
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
